@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
 import { loginUser } from '../Fetch';
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class Login extends Component {
       username: '',
       password: '',
       error: '',
+      goHome: false
     };
   }
 
@@ -19,9 +21,11 @@ class Login extends Component {
         this.setState({ error });
       } else {
         this.props.changeUser(data.user);
+        this.state.goHome = true;
       }
     });
   };
+
 
   updateForm = (event) => {
     const inputName = event.target.id;
@@ -30,6 +34,10 @@ class Login extends Component {
   };
 
   render() {
+    if (this.state.goHome) {
+      return <Redirect to='/' />
+    }
+
     return (
       <div className='bg-login-modal' onClick={this.props.toggleLoginModal}>
         <form className='login-form' onClick={(e) => e.stopPropagation()} onSubmit={this.attemptLogin}>
@@ -48,7 +56,7 @@ class Login extends Component {
           </button>
         </form>
       </div>
-    );
+    )
   }
 }
 

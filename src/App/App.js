@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Login from '../Login/Login';
 import MovieSection from '../Movie-Section/Movie-Section';
-import { getUsersRatings, getAllMovies, addRatingForUser,   deleteRatingForUser } from '../Fetch';
+import { getUsersRatings, getAllMovies, addRatingForUser,  deleteRatingForUser } from '../Fetch';
 import MoviePage from '../Movie-Page/Movie-Page';
+import { Route, Switch } from 'react-router-dom'
 
 class App extends Component {
   constructor() {
@@ -15,7 +16,7 @@ class App extends Component {
       currentUser: false,
       showMoviePage: false,
       showMovieSection: true,
-      movieSelected: false,
+      // movieSelected: false,
     };
   }
 
@@ -24,7 +25,7 @@ class App extends Component {
   };
 
   changeUser = (userData) => {
-    this.toggleLoginModal();
+    // this.toggleLoginModal();
     this.updateUsersRatings(userData)
   };
 
@@ -52,7 +53,7 @@ class App extends Component {
   };
 
   changeMovieSelected = (movie) => {
-    this.setState({ movieSelected: movie });
+    // this.setState({ movieSelected: movie });
     this.toggleMoviePage();
   };
 
@@ -76,9 +77,28 @@ class App extends Component {
       <div className='App'>
         <Header toggleLoginModal={this.toggleLoginModal} logoutUser={this.logoutUser} currentUser={this.state.currentUser} />
         {error && <h2>{error}</h2>}
-        {showMovieSection && <MovieSection movies={movies} changeMovieSelected={this.changeMovieSelected} currentUser={currentUser} />}
-        {showMoviePage && <MoviePage movie={this.state.movieSelected} toggleMoviePage={this.toggleMoviePage} currentUser={currentUser} rateMovie={this.rateMovie} deleteMovieRating={this.deleteMovieRating} />}
-        {showLoginModal && <Login toggleLoginModal={this.toggleLoginModal} changeUser={this.changeUser} />}
+        <Switch>
+          <Route
+            exact
+            path='/'
+            render={() => {
+              return <MovieSection movies={movies} changeMovieSelected={this.changeMovieSelected} currentUser={currentUser} />
+            }}
+          />
+          <Route
+            path='/movies/:movieId'
+            render={({match}) => {
+              const movieSelected = movies.find(movie => movie.id === parseInt(match.params.movieId))
+              return <MoviePage movie={movieSelected} currentUser={currentUser} rateMovie={this.rateMovie} deleteMovieRating={this.deleteMovieRating}/>
+            }}
+          />
+        </Switch>
+        <Route
+          path='/login'
+          render={() => {
+            return <Login toggleLoginModal={this.toggleLoginModal} changeUser={this.changeUser} />
+          }}
+        />
       </div>
     );
   }

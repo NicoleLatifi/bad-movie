@@ -10,16 +10,16 @@ class MovieCard extends Component {
     };
   }
 
-  getMovieToDisplay = (event) => {
-    event.preventDefault();
-    getSingleMovie(this.props.movie.id).then(({ data, error }) => {
-      if (error) {
-        this.setState({ error });
-      } else {
-        this.props.changeMovieSelected(data.movie);
-      }
-    });
-  };
+  // getMovieToDisplay = (event) => {
+  //   event.preventDefault();
+  //   getSingleMovie(this.props.movie.id).then(({ data, error }) => {
+  //     if (error) {
+  //       this.setState({ error });
+  //     } else {
+  //       this.props.changeMovieSelected(data.movie);
+  //     }
+  //   });
+  // };
 
   render() {
     let usersRating;
@@ -30,7 +30,7 @@ class MovieCard extends Component {
       });
     }
     return (
-      <article className='movie-card' style={{ backgroundImage: `url(${movie.poster_path})` }} alt={`background image of ${movie.title} poster`} onClick={this.getMovieToDisplay}>
+      <article className='movie-card' style={{ backgroundImage: `url(${movie.poster_path})` }} alt={`background image of ${movie.title} poster`} >
         {this.state.error && <p>Sorry, no movie details to display.</p>}
         <p className='movie-card-rating'>
           Avg<br></br>

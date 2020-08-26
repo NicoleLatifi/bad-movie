@@ -11,7 +11,9 @@
 }
 
 img {
-  grid-area: 1 / 1 / 1 / 2;
+  grid-area: 1 / 2 / 2 / 3;
+  height: auto;
+  width: 400px;
 }
 
 h1 {
