@@ -1,12 +1,4 @@
-### Hints
-
-Create DTR if in a group
-* read through full project and do an idea outline of workflow and branches.  
-
-Start a project off of the repo and link in README if project asks.  
-
-
-# Project Name (Think: Website/Game Name)
+# Bad Movie (Rancid Tomatillos)
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -14,8 +6,7 @@ Start a project off of the repo and link in README if project asks.
 [![Issues][issues-shield]][issues-url]
 
 
-An image of the product logo.  
-![logo](images/image.png)
+![logo](/src/badlogo.png)
 
 ## Table of Contents
 
@@ -25,18 +16,18 @@ An image of the product logo.
 - [Contributing](#contributing)
 - [Acknowledgements and Resources](#acknowledgements-and-resources)
 
-<!-- Breif Description -->
-
 ## Overview
-Bad Movie is a website that can be used by a User to scole through movies and the ratings given by other users. They can select movies for more specific details on that movie. The user can also store their own rateings for movies they have seen.
+Bad Movie is a website that can be used by a User to scroll through movies and the ratings given by other users. They can select movies for more specific details on that movie. The user can also store their own ratings for movies they have seen.
 
 This is a project for Turing school to utilize our knowledge on a variety of front end tools and get a better understanding of the utilizing the react Framework/ Library. It also expanded our testing knowledge using the React testing library and jest.
 
 ## Built With
 
 - React
-- jest
-- javascript
+- Router
+- React Testing Library
+- Jest
+- JavaScript
 - CSS
 - HTML
 
@@ -57,18 +48,25 @@ https://github.com/NicoleLatifi/bad-movie
 ### How to see the product
 
 From inside the Directory run `npm start` and open a browser with [localhost:3000](http://localhost:3000/)
-[Here should also be the link to the GitHub pages if necessary](https://google.com)
 
 ## Functionality
 
 ![screenshot](images/image.png)
+### Login
+- User clicks on Login button and enters credentials
+- User clicks on Submit button and is taken back to the home page
+- Now the Movie Cards display the user's ratings
 
-<!-- CONTRIBUTING -->
+### Rate Movie
+- User clicks on Movie Card and is taken to a detailed Movie page
+- Details about the movie are displayed including the user's ratings
+- User can click on Delete button to delete their current ratings
+- User can select a rating and click on Rate button
 
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.  
-   
+
 See the [open issues](https://github.com/NicoleLatifi/bad-movie/issues) for a list of proposed features (and known issues).
 
 - Fork the Project
@@ -97,9 +95,7 @@ See the [open issues](https://github.com/NicoleLatifi/bad-movie/issues) for a li
 [Original Project Link](https://frontend.turing.io/projects/module-3/rancid-tomatillos-v2.html)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Mentor mentions and why or other help outside the group
-
-<!-- MARKDOWN LINKS & IMAGES -->
+We also received a code review from mentor Jarrett Kong, and instructor Casey Dallavalle.
 
 [contributors-shield]: https://img.shields.io/github/contributors/NicoleLatifi/bad-movie.svg?style=flat-square
 [contributors-url]: https://github.com/NicoleLatifi/bad-movie/graphs/contributors
