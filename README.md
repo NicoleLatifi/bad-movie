@@ -51,8 +51,6 @@ From inside the Directory run `npm start` and open a browser with [localhost:300
 
 ## Functionality
 
-![screenshot](images/image.png)
-
 ### Login
 - User clicks on Login button and enters credentials
 - User clicks on Submit button and is taken back to the home page
