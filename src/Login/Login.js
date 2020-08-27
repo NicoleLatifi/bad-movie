@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
 import { loginUser } from '../Fetch';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class Login extends Component {
       username: '',
       password: '',
       error: '',
-      goHome: false
+      goHome: false,
     };
   }
 
@@ -21,11 +21,10 @@ class Login extends Component {
         this.setState({ error });
       } else {
         this.props.changeUser(data.user);
-        this.state.goHome = true;
+        this.setState({ goHome: true });
       }
     });
   };
-
 
   updateForm = (event) => {
     const inputName = event.target.id;
@@ -33,13 +32,17 @@ class Login extends Component {
     this.setState({ [inputName]: inputValue });
   };
 
+  handleOutsideClick = () => {
+    this.setState({ goHome: true });
+  };
+
   render() {
     if (this.state.goHome) {
-      return <Redirect to='/' />
+      return <Redirect to='/' />;
     }
 
     return (
-      <div className='bg-login-modal' onClick={this.props.toggleLoginModal}>
+      <div className='bg-login-modal' onClick={this.handleOutsideClick}>
         <form className='login-form' onClick={(e) => e.stopPropagation()} onSubmit={this.attemptLogin}>
           <h3 className='login-header'>Login</h3>
           <label htmlFor='username' className='username'>
@@ -56,7 +59,7 @@ class Login extends Component {
           </button>
         </form>
       </div>
-    )
+    );
   }
 }
 
