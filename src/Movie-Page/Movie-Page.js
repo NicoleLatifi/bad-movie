@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Movie-Page.css';
-import { getSingleMovie } from '../Fetch'
+import { getSingleMovie } from '../Fetch';
+import { Link } from 'react-router-dom';
 
 class MoviePage extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class MoviePage extends Component {
     this.state = {
       ratingInput: 10,
       selectedMovie: {},
-      error: ''
+      error: '',
     };
   }
 
@@ -17,7 +18,7 @@ class MoviePage extends Component {
       if (error) {
         this.setState({ error });
       } else {
-        this.setState({selectedMovie: data.movie});
+        this.setState({ selectedMovie: data.movie });
       }
     });
   }
@@ -38,22 +39,20 @@ class MoviePage extends Component {
 
   deleteMyRating = () => {
     this.props.deleteMovieRating(this.getUserMovieRating().id);
-  }
+  };
 
   render() {
     console.log(this.props);
     const { movie, currentUser } = this.props;
     let currentUsersRating;
-    if(currentUser) {
+    if (currentUser) {
       currentUsersRating = this.getUserMovieRating();
     }
     return (
       <section className='movie-page' style={{ backgroundImage: `url(${this.state.selectedMovie.backdrop_path})` }}>
-        {/*
-          <button className='movie-page-back-button' onClick={toggleMoviePage}>
-            Back
-          </button>
-          */}
+        <Link to='/'>
+          <button className='movie-page-back-button'>Back</button>
+        </Link>
         <article className='movie-descriptions'>
           <h2 className='movie-description-title'>{this.state.selectedMovie.title}</h2>
           <h3 className='movie-description-tagline'>{this.state.selectedMovie.tagline}</h3>
@@ -67,7 +66,9 @@ class MoviePage extends Component {
               <div>
                 <h2 className='rating-card-title'>My Ratings</h2>
                 <p className='rating-card-user-rating'>{currentUsersRating.rating}/10</p>
-                <button className='delete-button' onClick={this.deleteMyRating}>Delete</button>
+                <button className='delete-button' onClick={this.deleteMyRating}>
+                  Delete
+                </button>
               </div>
             )}
             {!currentUsersRating && (
