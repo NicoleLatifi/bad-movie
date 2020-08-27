@@ -1,9 +1,8 @@
 import React from 'react';
 import './Movie-Card.css';
 
-const MovieCard = () => {
+const MovieCard = ({ currentUser, movie }) => {
   let usersRating;
-  const { currentUser, movie } = this.props;
   if (currentUser) {
     usersRating = currentUser.ratings.find((rating) => {
       return movie.id === rating.movie_id;
