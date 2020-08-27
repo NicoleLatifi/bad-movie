@@ -15,14 +15,8 @@ class MovieSection extends Component {
         <Link to={`/movies/${movie.id}`}>
           <MovieCard movie={movie} currentUser={this.props.currentUser} />
         </Link>
-      )
-      // return (
-      //   <Link to={`/movies/${movie.id}`}>
-      //     <MovieCard movie={movie} currentUser={this.props.currentUser} key={movie.id} changeMovieSelected={this.props.changeMovieSelected} />
-      //   </Link>
-      // )
+      );
     });
-
 
     return (
       <section className='movies-section'>
