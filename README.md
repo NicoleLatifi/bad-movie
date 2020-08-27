@@ -48,6 +48,7 @@ https://github.com/NicoleLatifi/bad-movie
 ### How to see the product
 
 From inside the Directory run `npm start` and open a browser with [localhost:3000](http://localhost:3000/)
+Or visit the [Deployed Page](https://bad-movies-nl-th.herokuapp.com/)
 
 ## Functionality
 
