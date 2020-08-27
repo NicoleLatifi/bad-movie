@@ -43,22 +43,23 @@ class MoviePage extends Component {
 
   render() {
     console.log(this.props);
-    const { movie, currentUser } = this.props;
+    const { currentUser } = this.props;
+    const { selectedMovie } = this.state;
     let currentUsersRating;
     if (currentUser) {
       currentUsersRating = this.getUserMovieRating();
     }
     return (
-      <section className='movie-page' style={{ backgroundImage: `url(${this.state.selectedMovie.backdrop_path})` }}>
+      <section className='movie-page' style={{ backgroundImage: `url(${selectedMovie.backdrop_path})` }}>
         <Link to='/'>
           <button className='movie-page-back-button'>Back</button>
         </Link>
         <article className='movie-descriptions'>
-          <h2 className='movie-description-title'>{this.state.selectedMovie.title}</h2>
-          <h3 className='movie-description-tagline'>{this.state.selectedMovie.tagline}</h3>
-          <p className='movie-description-overview'>{this.state.selectedMovie.overview}</p>
-          <p className='movie-description-stats'>Runtime: {this.state.selectedMovie.runtime} minutes</p>
-          <p className='movie-description-ratings'> Average Rating: {Math.round(this.state.selectedMovie.average_rating * 10) / 10}/10</p>
+          <h2 className='movie-description-title'>{selectedMovie.title}</h2>
+          <h3 className='movie-description-tagline'>{selectedMovie.tagline}</h3>
+          <p className='movie-description-overview'>{selectedMovie.overview}</p>
+          <p className='movie-description-stats'>Runtime: {selectedMovie.runtime} minutes</p>
+          <p className='movie-description-ratings'> Average Rating: {Math.round(selectedMovie.average_rating * 10) / 10}/10</p>
         </article>
         {currentUser && (
           <aside className='movie-page-rating-card'>
