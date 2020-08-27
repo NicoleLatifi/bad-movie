@@ -52,16 +52,21 @@ From inside the Directory run `npm start` and open a browser with [localhost:300
 ## Functionality
 
 ![screenshot](images/image.png)
+
 ### Login
 - User clicks on Login button and enters credentials
 - User clicks on Submit button and is taken back to the home page
-- Now the Movie Cards display the user's ratings
+- Now the Movie Cards display the user's ratings   
+
+![screenshot](/src/user-login.gif)
 
 ### Rate Movie
 - User clicks on Movie Card and is taken to a detailed Movie page
 - Details about the movie are displayed including the user's ratings
 - User can click on Delete button to delete their current ratings
-- User can select a rating and click on Rate button
+- User can select a rating and click on Rate button   
+
+![screenshot](/src/rate-movie.gif)
 
 ## Contributing
 
@@ -92,8 +97,8 @@ See the [open issues](https://github.com/NicoleLatifi/bad-movie/issues) for a li
 
 ## Acknowledgements and Resources
 
-[Original Project Link](https://frontend.turing.io/projects/module-3/rancid-tomatillos-v2.html)
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Original Project Link](https://frontend.turing.io/projects/module-3/rancid-tomatillos-v2.html)   
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 
 We also received a code review from mentor Jarrett Kong, and instructor Casey Dallavalle.
 
