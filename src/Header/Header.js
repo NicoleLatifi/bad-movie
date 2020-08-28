@@ -2,6 +2,7 @@ import React from 'react';
 import './Header.css';
 import badLogo from '../badlogo.png';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Header = ({ currentUser, logoutUser }) => {
   return (
@@ -23,3 +24,7 @@ const Header = ({ currentUser, logoutUser }) => {
 };
 
 export default Header;
+
+Header.propTypes = {
+  logoutUser: PropTypes.func,
+}
