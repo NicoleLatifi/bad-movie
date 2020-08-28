@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Movie-Page.css';
 import { getSingleMovie } from '../Fetch';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class MoviePage extends Component {
   constructor(props) {
@@ -92,3 +93,9 @@ class MoviePage extends Component {
 }
 
 export default MoviePage;
+
+MoviePage.propTypes = {
+  movie: PropTypes.object,
+  rateMovie: PropTypes.func,
+  deleteMovieRating: PropTypes.func,
+}
