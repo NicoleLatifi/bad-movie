@@ -2,6 +2,7 @@ import React from 'react';
 import MovieCard from '../Movie-Card/Movie-Card';
 import './Movie-Section.css';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const MovieSection = ({ movies, currentUser }) => {
   const movieCards = movies.map((movie) => {
@@ -21,3 +22,7 @@ const MovieSection = ({ movies, currentUser }) => {
 };
 
 export default MovieSection;
+
+MovieSection.propTypes = {
+  movies: PropTypes.array,
+}

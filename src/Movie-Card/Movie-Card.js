@@ -1,5 +1,6 @@
 import React from 'react';
 import './Movie-Card.css';
+import PropTypes from 'prop-types';
 
 const MovieCard = ({ currentUser, movie }) => {
   let usersRating;
@@ -26,3 +27,7 @@ const MovieCard = ({ currentUser, movie }) => {
 };
 
 export default MovieCard;
+
+MovieCard.propTypes = {
+  movies: PropTypes.array,
+}
