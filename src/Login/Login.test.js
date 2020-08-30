@@ -28,8 +28,11 @@ describe('Login Component', () => {
     expect(submitButton).toBeInTheDocument();
   });
 
-  it('Should fire functions when the submit button is clicked', async () => {
+  it('Should change user when the submit with valid user information', async () => {
     const mockChangeUser = jest.fn();
+
+    const foundUser = {data: {user: {id: 1, name: "Alan", email: "alan@turing.io"}}, error: false }
+    loginUser.mockResolvedValue(foundUser);
 
     render(
       <MemoryRouter>
@@ -37,21 +40,35 @@ describe('Login Component', () => {
       </MemoryRouter>
     );
 
-    const mockedUser = {data: {user: {id: 1, name: "Alan", email: "alan@turing.io"}}}
-
-    loginUser.mockResolvedValueOnce(mockedUser);
-
+    const loginHeader = screen.getByRole('heading', { name: 'Login' });
     const submitButton = await waitFor(() => screen.getByRole('button', { name: 'Submit' }))
-    fireEvent.click(submitButton);
+    await fireEvent.click(submitButton);
 
     expect(mockChangeUser).toBeCalledTimes(1);
+    expect(loginHeader).not.toBeInTheDocument();
+  });
 
-    // I think this is passing because if you make this change:
-    // mockedUser = {user: {id: 1, name: "Alan", email: "alan@turing.io"}}
-    // You get the error Cannot read property 'user' of undefined at src/Login/Login.js:23:34
-    // So attemptLogin is being called
-    // And if you make this change in Login.js:
-    // this.props.changeUser(console.log('hi'))
-    // It logs 'hi'
+  it('Should NOT change user when the submit with invalid user information', async () => {
+    const mockChangeUser = jest.fn();
+
+    const foundUser = { error: 'Username or password is incorrect' }
+    loginUser.mockResolvedValue(foundUser);
+
+
+    render(
+      <MemoryRouter>
+        <Login changeUser={mockChangeUser} />
+      </MemoryRouter>
+    );
+
+    const submitButton = await waitFor(() => screen.getByRole('button', { name: 'Submit' }))
+    await fireEvent.click(submitButton);
+
+    const errorMessage = await waitFor(() => screen.getByText('Username or password is incorrect'))
+    const loginHeader = await waitFor(() =>screen.getByRole('heading', { name: 'Login' }));
+
+    expect(mockChangeUser).toBeCalledTimes(0);
+    expect(errorMessage).toBeInTheDocument();
+    expect(loginHeader).toBeInTheDocument();
   });
 })
