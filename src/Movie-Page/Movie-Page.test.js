@@ -95,13 +95,23 @@ describe('Movie Page Component', () => {
     expect(rateButton).toBeInTheDocument();
   });
 
-  // it('Should fire a function when the back button is clicked', () => {
-  //   const mockToggleMoviePage = jest.fn();
-  //   render(<MoviePage movie={movieSelected} toggleMoviePage={mockToggleMoviePage} />);
+  it('Should delete a rating', async () => {
+    getSingleMovie.mockResolvedValue({
+      data: { movie: movieSelected },
+      error: false,
+    });
+    const mockDeleteMovieRating = jest.fn();
+    const mockCurrentUser = { ratings: [{ movie_id: 1, rating: 10 }] };
+    render(
+      <MemoryRouter>
+        <MoviePage movie={movieSelected} currentUser={mockCurrentUser} rateMovie={jest.fn()} deleteMovieRating={mockDeleteMovieRating} />
+      </MemoryRouter>
+    );
 
-  //   const button = screen.getByText('Back');
-  //   fireEvent.click(button);
+    const deleteButton = screen.getByRole('button', { name: 'Delete' });
 
-  //   expect(mockToggleMoviePage).toBeCalledTimes(1);
-  // });
+    await fireEvent.click(deleteButton);
+
+    expect(mockDeleteMovieRating).toBeCalledTimes(1);
+  });
 });
