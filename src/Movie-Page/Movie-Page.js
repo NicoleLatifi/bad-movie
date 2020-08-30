@@ -43,7 +43,6 @@ class MoviePage extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { currentUser } = this.props;
     const { selectedMovie } = this.state;
     let currentUsersRating;
@@ -98,4 +97,4 @@ MoviePage.propTypes = {
   movie: PropTypes.object,
   rateMovie: PropTypes.func,
   deleteMovieRating: PropTypes.func,
-}
+};
