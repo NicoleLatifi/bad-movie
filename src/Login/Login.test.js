@@ -45,5 +45,13 @@ describe('Login Component', () => {
     fireEvent.click(submitButton);
 
     expect(mockChangeUser).toBeCalledTimes(1);
+
+    // I think this is passing because if you make this change:
+    // mockedUser = {user: {id: 1, name: "Alan", email: "alan@turing.io"}}
+    // You get the error Cannot read property 'user' of undefined at src/Login/Login.js:23:34
+    // So attemptLogin is being called
+    // And if you make this change in Login.js:
+    // this.props.changeUser(console.log('hi'))
+    // It logs 'hi'
   });
 })
