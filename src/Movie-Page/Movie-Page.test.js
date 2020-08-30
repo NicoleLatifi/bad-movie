@@ -67,9 +67,11 @@ describe('Movie Page Component', () => {
 
     const ratingCard = screen.getByRole('heading', { name: 'My Ratings' });
     const userRating = screen.getByText('10/10');
+    const deleteButton = screen.getByRole('button', { name: 'Delete' });
 
     expect(ratingCard).toBeInTheDocument();
-    expect;
+    expect(userRating).toBeInTheDocument();
+    expect(deleteButton).toBeInTheDocument();
   });
 
   // it('Should fire a function when the back button is clicked', () => {
