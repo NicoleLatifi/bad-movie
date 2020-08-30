@@ -114,4 +114,24 @@ describe('Movie Page Component', () => {
 
     expect(mockDeleteMovieRating).toBeCalledTimes(1);
   });
+
+  it('Should rate a movie', async () => {
+    getSingleMovie.mockResolvedValue({
+      data: { movie: movieSelected },
+      error: false,
+    });
+    const mockCurrentUser = { ratings: [] };
+    const mockRateMovie = jest.fn();
+    render(
+      <MemoryRouter>
+        <MoviePage movie={movieSelected} currentUser={mockCurrentUser} rateMovie={mockRateMovie} deleteMovieRating={jest.fn()} />
+      </MemoryRouter>
+    );
+
+    const rateButton = screen.getByRole('button', { name: 'Rate!' });
+
+    await fireEvent.click(rateButton);
+
+    expect(mockRateMovie).toBeCalledTimes(1);
+  });
 });
