@@ -28,7 +28,7 @@ describe('Login Component', () => {
     expect(submitButton).toBeInTheDocument();
   });
 
-  it('Should fire functions when the submit button is clicked', () => {
+  it('Should fire functions when the submit button is clicked', async () => {
     const mockChangeUser = jest.fn();
 
     render(
@@ -37,7 +37,11 @@ describe('Login Component', () => {
       </MemoryRouter>
     );
 
-    const submitButton = screen.getByRole('button', { name: 'Submit' })
+    const mockedUser = {data: {user: {id: 1, name: "Alan", email: "alan@turing.io"}}}
+
+    loginUser.mockResolvedValueOnce(mockedUser);
+
+    const submitButton = await waitFor(() => screen.getByRole('button', { name: 'Submit' }))
     fireEvent.click(submitButton);
 
     expect(mockChangeUser).toBeCalledTimes(1);
