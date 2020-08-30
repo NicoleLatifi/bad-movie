@@ -24,21 +24,21 @@ describe('Header Component', () => {
     expect(loginButton).toBeInTheDocument();
   });
 
-  // it('Should go to the /login endpoint when the login is clicked', () => {});
+  it('Should have the correct content when rendered with a currentUser', () => {
+    render(
+      <MemoryRouter>
+        <Header currentUser={{ name: 'Tyler' }} logoutUser={jest.fn()} />
+      </MemoryRouter>
+    );
 
-  // it('Should have the correct content when rendered with a currentUser', () => {
-  //   render(<Header currentUser={{ name: 'Tyler' }} toggleLoginModal={jest.fn()} logoutUser={jest.fn()} />);
+    const badMovieLogo = screen.getByAltText('Bad Movie Logo');
+    const welcomeMessage = screen.getByText('Hello Tyler');
+    const logoutButton = screen.getByText('Logout');
 
-  //   const badMovieTitle = screen.getByText('Bad Movie');
-  //   const badMovieLogo = screen.getByAltText('Bad Movie Logo');
-  //   const welcomeMessage = screen.getByText('Hello Tyler');
-  //   const logoutButton = screen.getByText('Logout');
-
-  //   expect(badMovieTitle).toBeInTheDocument();
-  //   expect(badMovieLogo).toBeInTheDocument();
-  //   expect(logoutButton).toBeInTheDocument();
-  //   expect(welcomeMessage).toBeInTheDocument();
-  // });
+    expect(badMovieLogo).toBeInTheDocument();
+    expect(logoutButton).toBeInTheDocument();
+    expect(welcomeMessage).toBeInTheDocument();
+  });
 
   // it('Should fire a function when the logout button is clicked', () => {
   //   const mockLogoutUser = jest.fn();
