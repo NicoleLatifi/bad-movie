@@ -40,10 +40,12 @@ describe('Login Component', () => {
       </MemoryRouter>
     );
 
+    const loginHeader = screen.getByRole('heading', { name: 'Login' });
     const submitButton = await waitFor(() => screen.getByRole('button', { name: 'Submit' }))
     await fireEvent.click(submitButton);
 
     expect(mockChangeUser).toBeCalledTimes(1);
+    expect(loginHeader).not.toBeInTheDocument();
   });
 
   it('Should NOT change user when the submit with invalid user information', async () => {
