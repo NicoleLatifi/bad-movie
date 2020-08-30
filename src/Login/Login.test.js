@@ -1,14 +1,23 @@
+import MutationObserver from '@sheerun/mutationobserver-shim';
+window.MutationObserver = MutationObserver;
 import React from 'react';
 import Login from './Login';
-import { screen, fireEvent, render } from '@testing-library/react';
+import { Router, MemoryRouter } from 'react-router-dom';
+import { screen, fireEvent, render, waitFor } from '@testing-library/react';
+import { loginUser } from '../Fetch';
 import '@testing-library/jest-dom';
+jest.mock('../Fetch.js');
 
 describe('Login Component', () => {
   beforeEach(() => {
 
   });
   it('Should have the correct content when rendered', () => {
-    render(<Login toggleLoginModal={jest.fn()} changeUser={jest.fn()} />);
+    render(
+      <MemoryRouter>
+        <Login />
+      </MemoryRouter>
+    );
 
     const loginHeader = screen.getByRole('heading', { name: 'Login' });
     const usernameLabel = screen.getByRole('textbox', { name: 'username:' });
@@ -18,15 +27,19 @@ describe('Login Component', () => {
     expect(usernameLabel).toBeInTheDocument();
     expect(submitButton).toBeInTheDocument();
   });
+
   it('Should fire functions when the submit button is clicked', () => {
-    const mockToggleLoginModal = jest.fn();
     const mockChangeUser = jest.fn();
-    render(<Login toggleLoginModal={mockToggleLoginModal} changeUser={mockChangeUser} />);
+
+    render(
+      <MemoryRouter>
+        <Login changeUser={mockChangeUser} />
+      </MemoryRouter>
+    );
 
     const submitButton = screen.getByRole('button', { name: 'Submit' })
     fireEvent.click(submitButton);
 
-    expect(onSubmit).toBeCalledTimes(1);
-    expect(mockChangeUser).toBeCalledTimes(1)
+    expect(mockChangeUser).toBeCalledTimes(1);
   });
 })
