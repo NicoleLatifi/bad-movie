@@ -15,16 +15,16 @@ class Login extends Component {
   }
 
   attemptLogin = (event) => {
-    event.preventDefault();
-    loginUser(this.state.username, this.state.password).then(({ data, error }) => {
-      if (error) {
-        this.setState({ error });
-      } else {
-        this.props.changeUser(data.user);
-        this.setState({ goHome: true });
-      }
-    });
-  };
+  event.preventDefault();
+  loginUser(this.state.username, this.state.password).then(({ data, error }) => {
+    if (error) {
+      this.setState({ error });
+    } else {
+      this.props.changeUser(data.user);
+      this.setState({ goHome: true });
+    }
+  });
+};
 
   updateForm = (event) => {
     const inputName = event.target.id;
@@ -43,7 +43,7 @@ class Login extends Component {
 
     return (
       <div className='bg-login-modal' onClick={this.handleOutsideClick}>
-        <form className='login-form' onClick={(e) => e.stopPropagation()} onSubmit={this.attemptLogin}>
+        <form className='login-form' onClick={(e) => e.stopPropagation()} >
           <h3 className='login-header'>Login</h3>
           <label htmlFor='username' className='username'>
             username:
@@ -54,7 +54,7 @@ class Login extends Component {
           </label>
           <input id='password' className='password-input' type='password' onChange={this.updateForm} />
           {this.state.error && <label className='invalid-alert hide'>{this.state.error}</label>}
-          <button className='submit' aria-label='Submit'>
+          <button className='submit' aria-label='Submit' onClick={this.attemptLogin} >
             Submit
           </button>
         </form>
