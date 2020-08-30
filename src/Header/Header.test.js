@@ -5,11 +5,6 @@ import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
 
 describe('Header Component', () => {
-  // Things that rendered
-  // Functions that fire in section
-  // functions called with correct methods
-  // if network request does app respond
-
   it('Should have the correct content when rendered without a current User', () => {
     render(
       <MemoryRouter>
@@ -40,13 +35,18 @@ describe('Header Component', () => {
     expect(welcomeMessage).toBeInTheDocument();
   });
 
-  // it('Should fire a function when the logout button is clicked', () => {
-  //   const mockLogoutUser = jest.fn();
-  //   render(<Header currentUser={{ name: 'Nicole' }} toggleLoginModal={jest.fn()} logoutUser={mockLogoutUser} />);
+  it('Should fire a function when the logout button is clicked', () => {
+    const mockLogoutUser = jest.fn();
 
-  //   const button = screen.getByText('Logout');
-  //   fireEvent.click(button);
+    render(
+      <MemoryRouter>
+        <Header currentUser={{ name: 'Nicole' }} logoutUser={mockLogoutUser} />
+      </MemoryRouter>
+    );
 
-  //   expect(mockLogoutUser).toBeCalledTimes(1);
-  // });
+    const button = screen.getByText('Logout');
+    fireEvent.click(button);
+
+    expect(mockLogoutUser).toBeCalledTimes(1);
+  });
 });
