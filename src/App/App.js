@@ -18,22 +18,34 @@ class App extends Component {
 
   rateMovie = (ratingInput, movieId) => {
     const postingUser = this.state.currentUser;
-    addRatingForUser(postingUser.id, movieId, ratingInput).then((rating) => {
-      this.changeUser(this.state.currentUser);
-    });
+    addRatingForUser(postingUser.id, movieId, ratingInput)
+      .then((rating) => {
+        this.changeUser(this.state.currentUser);
+      })
+      .catch((error) => {
+        this.setState({ error: 'Something went wrong accepting that rating' });
+      });
   };
 
   deleteMovieRating = async (ratingId) => {
     const deletingUser = this.state.currentUser;
-    await deleteRatingForUser(deletingUser.id, ratingId);
+    try {
+      await deleteRatingForUser(deletingUser.id, ratingId);
+    } catch (error) {
+      this.setState({ error: 'Something went wrong deleting this rating' });
+    }
     this.changeUser(this.state.currentUser);
   };
 
   changeUser = (userData) => {
-    getUsersRatings(userData.id).then((userRatings) => {
-      userData.ratings = userRatings;
-      this.setState({ currentUser: userData });
-    });
+    getUsersRatings(userData.id)
+      .then((userRatings) => {
+        userData.ratings = userRatings;
+        this.setState({ currentUser: userData });
+      })
+      .catch((error) => {
+        this.setState({ error: 'Something went wrong getting your saved ratings' });
+      });
   };
 
   logoutUser = () => {
