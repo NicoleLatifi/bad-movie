@@ -37,16 +37,6 @@ describe('App Tests', () => {
         average_rating: 10
       },
     ];
-    selectedMovie = {
-      data: {
-        id: 1,
-        title: 'Greenland',
-        poster_path: "https://image.tmdb.org/t/p/original//sA154deR0X51EcR2lm2FfDczryg.jpg",
-        backdrop_path: "https://image.tmdb.org/t/p/original//juzEhsX92if2lJ2CSqKAI4RQswt.jpg",
-        overview: 'Greenland overview',
-        average_rating: 8
-      }
-    };
   })
 
   it('Should display Movie Cards when rendered', async () => {
@@ -67,6 +57,16 @@ describe('App Tests', () => {
   })
 
   it('Should render a Movie Page when a Movie Card is clicked', async () => {
+    selectedMovie = {
+      data: {
+        id: 1,
+        title: 'Greenland',
+        poster_path: "https://image.tmdb.org/t/p/original//sA154deR0X51EcR2lm2FfDczryg.jpg",
+        backdrop_path: "https://image.tmdb.org/t/p/original//juzEhsX92if2lJ2CSqKAI4RQswt.jpg",
+        overview: 'Greenland overview',
+        average_rating: 8
+      }
+    };
 
     getAllMovies.mockResolvedValueOnce(movies);
     getSingleMovie.mockResolvedValueOnce(selectedMovie);
@@ -79,6 +79,15 @@ describe('App Tests', () => {
 
     const header = await waitFor(() => screen.getByRole('heading', {name: 'Movies'} ))
     const movieCardLink = await waitFor(() => screen.getByAltText('Greenland poster')); // what else would go here?
+
+    selectedMovie = {
+      id: 1,
+      title: 'Greenland',
+      poster_path: "https://image.tmdb.org/t/p/original//sA154deR0X51EcR2lm2FfDczryg.jpg",
+      backdrop_path: "https://image.tmdb.org/t/p/original//juzEhsX92if2lJ2CSqKAI4RQswt.jpg",
+      overview: 'Greenland overview',
+      average_rating: 8
+    };
 
     await fireEvent.click(movieCardLink);
 
