@@ -29,7 +29,11 @@ class App extends Component {
 
   deleteMovieRating = async (ratingId) => {
     const deletingUser = this.state.currentUser;
-    await deleteRatingForUser(deletingUser.id, ratingId);
+    try {
+      await deleteRatingForUser(deletingUser.id, ratingId);
+    } catch (error) {
+      this.setState({ error: 'Something went wrong deleting this rating' });
+    }
     this.changeUser(this.state.currentUser);
   };
 

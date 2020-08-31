@@ -54,8 +54,7 @@ export const deleteRatingForUser = (userId, ratingId) => {
     },
   })
     .then((response) => response.json())
-    .then((returnedData) => console.log(returnedData))
-    .catch((err) => console.log(err));
+    .then((returnedData) => console.log(returnedData));
 };
 
 export const loginUser = (username, password) => {
