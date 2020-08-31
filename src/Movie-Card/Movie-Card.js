@@ -23,6 +23,20 @@ const MovieCard = ({ currentUser, movie }) => {
         </p>
       )}
     </article>
+
+    // <article className='movie-card'  >
+    //   <img src='url(${movie.poster_path})' alt={`${movie.title} poster`} />
+    //   <p className='movie-card-rating'>
+    //     Avg<br></br>
+    //     {Math.round(movie.average_rating * 10) / 10}/10
+    //   </p>
+    //   {usersRating && (
+    //     <p className='movie-card-user-rating'>
+    //       My Rating<br></br>
+    //       {usersRating.rating}/10
+    //     </p>
+    //   )}
+    // </article>
   );
 };
 
