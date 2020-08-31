@@ -43,8 +43,7 @@ export const addRatingForUser = (userId, movieId, ratingInt) => {
     })
     .then((data) => {
       return data.rating;
-    })
-    .catch((err) => console.log(err));
+    });
 };
 
 export const deleteRatingForUser = (userId, ratingId) => {
