@@ -11,7 +11,12 @@ const MovieCard = ({ currentUser, movie }) => {
   }
 
   return (
-    <article className='movie-card' style={{ backgroundImage: `url(${movie.poster_path})` }} alt={`background image of ${movie.title} poster`}>
+    <article
+      className='movie-card'
+      style={{ backgroundImage: `url(${movie.poster_path})` }}
+      alt={`background image of ${movie.title} poster`}
+      data-testid={movie.id}
+    >
       <p className='movie-card-rating'>
         Avg<br></br>
         {Math.round(movie.average_rating * 10) / 10}/10
