@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 const MovieSection = ({ movies, currentUser }) => {
   const movieCards = movies.map((movie) => {
     return (
-      <Link to={`/movies/${movie.id}`}>
+      <Link to={`/movies/${movie.id}`} key={movie.id}>
         <MovieCard movie={movie} currentUser={currentUser} />
       </Link>
     );
@@ -25,4 +25,4 @@ export default MovieSection;
 
 MovieSection.propTypes = {
   movies: PropTypes.array,
-}
+};
