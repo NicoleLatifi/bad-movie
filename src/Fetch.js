@@ -4,7 +4,7 @@ export const getAllMovies = () => {
     .then((data) => {
       return data.movies;
     });
-}
+};
 
 export const getSingleMovie = (movieId) => {
   let data, error;
@@ -19,18 +19,15 @@ export const getSingleMovie = (movieId) => {
     .catch((error) => {
       return { data, error: error.message };
     });
-}
+};
 
 export const getUsersRatings = (userId) => {
   return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`)
     .then((response) => response.json())
     .then((data) => {
       return data.ratings;
-    })
-    .catch((err) => {
-      console.log(err, 'in getUserRatings');
     });
-}
+};
 
 export const addRatingForUser = (userId, movieId, ratingInt) => {
   const stringyRating = JSON.stringify({ movie_id: movieId, rating: parseInt(ratingInt) });
@@ -48,7 +45,7 @@ export const addRatingForUser = (userId, movieId, ratingInt) => {
       return data.rating;
     })
     .catch((err) => console.log(err));
-}
+};
 
 export const deleteRatingForUser = (userId, ratingId) => {
   return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings/${ratingId}`, {
@@ -60,7 +57,7 @@ export const deleteRatingForUser = (userId, ratingId) => {
     .then((response) => response.json())
     .then((returnedData) => console.log(returnedData))
     .catch((err) => console.log(err));
-}
+};
 
 export const loginUser = (username, password) => {
   let data, error;
@@ -82,4 +79,4 @@ export const loginUser = (username, password) => {
     .catch((error) => {
       return { data, error: error.message };
     });
-}
+};

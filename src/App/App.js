@@ -30,10 +30,14 @@ class App extends Component {
   };
 
   changeUser = (userData) => {
-    getUsersRatings(userData.id).then((userRatings) => {
-      userData.ratings = userRatings;
-      this.setState({ currentUser: userData });
-    });
+    getUsersRatings(userData.id)
+      .then((userRatings) => {
+        userData.ratings = userRatings;
+        this.setState({ currentUser: userData });
+      })
+      .catch((error) => {
+        this.setState({ error: 'Something went wrong getting your saved ratings' });
+      });
   };
 
   logoutUser = () => {
