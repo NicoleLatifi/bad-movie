@@ -5,6 +5,22 @@
   position: relative;
 }
 
+.heart-background {
+  background-color: wheat;
+  border-radius: 50%;
+  height: 30px;
+  left: 5px;
+  position: absolute;
+  top: 1px;
+  width: 30px;
+}
+.heart-icon {
+  height: 24px;
+  width: 24px;
+  margin-left: 3px;
+  margin-top: 3px;
+}
+
 .movie-card-user-rating,
 .movie-card-rating {
   font-size: 0.7em;
