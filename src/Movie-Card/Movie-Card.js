@@ -1,6 +1,7 @@
 import React from 'react';
 import './Movie-Card.css';
 import PropTypes from 'prop-types';
+import unfilledHeart from '../white-heart.png';
 
 const MovieCard = ({ currentUser, movie }) => {
   let usersRating;
@@ -17,6 +18,9 @@ const MovieCard = ({ currentUser, movie }) => {
       alt={`background image of ${movie.title} poster`}
       data-testid={movie.id}
     >
+      <div className='heart-background'>
+        <img className='heart-icon' src={unfilledHeart} alt='Unselected heart' />
+      </div>
       <p className='movie-card-rating'>
         Avg<br></br>
         {Math.round(movie.average_rating * 10) / 10}/10
