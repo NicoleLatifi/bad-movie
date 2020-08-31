@@ -32,7 +32,6 @@ class App extends Component {
     try {
       await deleteRatingForUser(deletingUser.id, ratingId);
     } catch (error) {
-      console.log(error);
       this.setState({ error: 'Something went wrong deleting this rating' });
     }
     this.changeUser(this.state.currentUser);

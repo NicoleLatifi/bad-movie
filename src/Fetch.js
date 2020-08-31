@@ -53,8 +53,6 @@ export const deleteRatingForUser = (userId, ratingId) => {
       'Content-Type': 'application/json',
     },
   });
-  // .then((response) => response.json())
-  // .then((returnedData) => console.log(returnedData));
 };
 
 export const loginUser = (username, password) => {
