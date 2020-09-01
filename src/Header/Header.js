@@ -10,6 +10,13 @@ const Header = ({ currentUser, logoutUser }) => {
       <img src={badLogo} alt='Bad Movie Logo' height='50' width='50' />
       {currentUser && <h2>Hello {currentUser.name}</h2>}
       {currentUser && (
+        <Link to={'/favorites'}>
+          <button className='favorites-button'>
+            Favorites
+          </button>
+        </Link>
+      )}
+      {currentUser && (
         <button className='logout-button' onClick={logoutUser}>
           Logout
         </button>
