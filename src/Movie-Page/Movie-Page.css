@@ -39,19 +39,40 @@
 }
 
 .movie-page-rating-card {
-  height: 15vh;
-  width: 15vw;
+  height: 20vh;
+  width: 20vw;
   position: absolute;
   bottom: 45px;
   right: 10px;
   background-color: wheat;
   border: 2px solid black;
   border-radius: 15px;
-  padding: 5px;
 }
 
 .movie-page-rating-card div {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+
+.rating-card-title,
+.rate-this-movie {
+  margin-top: 40px;
+}
+
+.movie-page-heart-background {
+  border: 2px solid black;
+  border-radius: 50%;
+  height: 34px;
+  right: 5px;
+  position: absolute;
+  top: 1px;
+  width: 34px;
+}
+
+.movie-page-heart-icon {
+  height: 24px;
+  width: 24px;
+  margin-right: 3px;
+  margin-top: 3px;
 }
