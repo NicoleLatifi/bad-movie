@@ -1,5 +1,4 @@
 .clickable {
- border: 2px solid seafoam;
  width: 200px;
  height: 260px;
  position: absolute;
@@ -12,17 +11,6 @@
   background-size: 200px 300px;
   position: relative;
 }
-
-/* .heart-background {
-  background-color: wheat;
-  border: 2px solid black;
-  border-radius: 50%;
-  height: 34px;
-  left: 5px;
-  position: absolute;
-  top: 1px;
-  width: 34px;
-} */
 
 .heart-background {
   background-color: wheat;

@@ -14,7 +14,7 @@ class App extends Component {
       movies: [],
       error: '',
       currentUser: false,
-      favoriteMovies: [], // array of movie id's
+      favoriteMovies: [],
     };
   }
 
@@ -48,7 +48,6 @@ class App extends Component {
       .catch((error) => {
         this.setState({ error: 'Something went wrong getting your saved ratings' });
       });
-    console.log(this.state.favoriteMovies)
   };
 
   logoutUser = () => {
@@ -91,7 +90,7 @@ class App extends Component {
             path='/movies/:movieId'
             render={({ match }) => {
               const movieSelected = movies.find((movie) => movie.id === parseInt(match.params.movieId));
-              return <MoviePage movie={movieSelected} currentUser={currentUser} rateMovie={this.rateMovie} deleteMovieRating={this.deleteMovieRating} addFavoriteMovie={this.addFavoriteMovie} />;
+              return <MoviePage movie={movieSelected} currentUser={currentUser} favoriteMovies={favoriteMovies} rateMovie={this.rateMovie} deleteMovieRating={this.deleteMovieRating} addFavoriteMovie={this.addFavoriteMovie} getUsersFavoriteMovies={this.getUsersFavoriteMovies} />;
             }}
             />
             <Route

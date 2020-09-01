@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Movie-Card.css';
 import PropTypes from 'prop-types';
 import unfilledHeart from '../white-heart.png';
-import filledHeart from '../black-heart.png'
+import filledHeart from '../black-heart.png';
 import { Link } from 'react-router-dom';
 import { addFavoriteMovie } from '../Fetch';
 
@@ -24,11 +24,9 @@ class MovieCard extends Component {
   }
 
   favoriteMovie = async () => {
-    addFavoriteMovie(this.props.movie.id)
-    await this.setState({ favorited: !this.state.favorited })
+    addFavoriteMovie(this.props.movie.id);
+    await this.setState({ favorited: !this.state.favorited });
     await this.props.getUsersFavoriteMovies();
-    await console.log(this.state.favorited)
-    await console.log(this.props.favoriteMovies)
   }
 
   render() {
@@ -51,11 +49,13 @@ class MovieCard extends Component {
         {currentUser && !favorited &&
           <div className='heart-background'>
             <img className='heart-icon' src={unfilledHeart} alt='Unselected heart' onClick={this.favoriteMovie} />
-          </div>}
+          </div>
+        }
         {currentUser && favorited &&
           <div className='heart-background'>
             <img className='heart-icon' src={filledHeart} alt='Selected heart' onClick={this.favoriteMovie} />
-          </div>}
+          </div>
+        }
         <Link to={`/movies/${movie.id}`}>
           <div className='clickable'>
           </div>

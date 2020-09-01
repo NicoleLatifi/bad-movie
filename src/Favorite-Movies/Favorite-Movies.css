@@ -1,0 +1,21 @@
+.favorite-movies {
+  height: 90vh;
+}
+
+.favorite-movies-header {
+    text-align: center;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.no-favorites-message {
+  text-align: center;
+}
+
+.favorite-movies-container {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  overflow-y: scroll;
+}

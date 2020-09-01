@@ -1,7 +1,6 @@
 import React from 'react';
 import MovieCard from '../Movie-Card/Movie-Card';
 import './Favorite-Movies.css';
-// import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 
@@ -11,7 +10,6 @@ const FavoriteMovies = ({ movie, currentUser, movies, favoriteMovies, addFavorit
     favoriteMovies.forEach((favoriteMovie) => {
       if(favoriteMovie === movie.id) {
         moviesToDisplay.push(movie)
-        console.log(moviesToDisplay)
       }
     })
   })
@@ -25,6 +23,7 @@ const FavoriteMovies = ({ movie, currentUser, movies, favoriteMovies, addFavorit
   return (
     <section className='favorite-movies'>
       <h2 className='favorite-movies-header'>Favorite Movies</h2>
+      {!favoriteMovies.length && <p className='no-favorites-message'>You don't have any favorited movies yet. Go back to start favoriting!</p>}
       <div className='favorite-movies-container'>{movieCards}</div>
     </section>
   );

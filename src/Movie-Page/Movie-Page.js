@@ -3,6 +3,7 @@ import './Movie-Page.css';
 import { getSingleMovie } from '../Fetch';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import filledHeart from '../black-heart.png';
 import unfilledHeart from '../white-heart.png';
 import { addFavoriteMovie } from '../Fetch';
 
@@ -12,6 +13,7 @@ class MoviePage extends Component {
     this.state = {
       ratingInput: 10,
       selectedMovie: {},
+      favorited: false,
       error: '',
     };
   }
@@ -24,6 +26,12 @@ class MoviePage extends Component {
         this.setState({ selectedMovie: data.movie });
       }
     });
+    const foundMovie = this.props.favoriteMovies.find(favoriteMovie => {
+      return favoriteMovie === this.props.movie.id
+    })
+    if(foundMovie) {
+      this.setState({ favorited: true})
+    }
   }
 
   getUserMovieRating = () => {
@@ -44,14 +52,15 @@ class MoviePage extends Component {
     this.props.deleteMovieRating(this.getUserMovieRating().id);
   };
 
-  favoriteMovie = () => {
-    console.log(this.state.selectedMovie)
-    addFavoriteMovie(this.state.selectedMovie)
+  favoriteMovie = async () => {
+    addFavoriteMovie(this.props.movie.id);
+    await this.setState({ favorited: !this.state.favorited });
+    await this.props.getUsersFavoriteMovies();
   }
 
   render() {
     const { currentUser } = this.props;
-    const { selectedMovie } = this.state;
+    const { selectedMovie, favorited } = this.state;
     let currentUsersRating;
     if (currentUser) {
       currentUsersRating = this.getUserMovieRating();
@@ -70,9 +79,16 @@ class MoviePage extends Component {
         </article>
         {currentUser && (
           <aside className='movie-page-rating-card'>
-            <div className='movie-page-heart-background'>
-              <img className='movie-page-heart-icon' src={unfilledHeart} alt='Unselected heart' onClick={this.favoriteMovie} />
-            </div>
+            {currentUser && !favorited &&
+              <div className='movie-page-heart-background'>
+                <img className='movie-page-heart-icon' src={unfilledHeart} alt='Unselected heart' onClick={this.favoriteMovie} />
+              </div>
+            }
+            {currentUser && favorited &&
+              <div className='movie-page-heart-background'>
+                <img className='movie-page-heart-icon' src={filledHeart} alt='Unselected heart' onClick={this.favoriteMovie} />
+              </div>
+            }
             {currentUsersRating && (
               <div>
                 <h2 className='rating-card-title'>My Ratings</h2>
