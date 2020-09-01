@@ -3,6 +3,7 @@ import './Movie-Page.css';
 import { getSingleMovie } from '../Fetch';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import unfilledHeart from '../white-heart.png';
 
 class MoviePage extends Component {
   constructor(props) {
@@ -63,6 +64,9 @@ class MoviePage extends Component {
         </article>
         {currentUser && (
           <aside className='movie-page-rating-card'>
+            <div className='movie-page-heart-background'>
+              <img className='movie-page-heart-icon' src={unfilledHeart} alt='Unselected heart' />
+            </div>
             {currentUsersRating && (
               <div>
                 <h2 className='rating-card-title'>My Ratings</h2>
@@ -74,7 +78,7 @@ class MoviePage extends Component {
             )}
             {!currentUsersRating && (
               <div>
-                <h2>Rate This Movie</h2>
+                <h2 className='rate-this-movie'>Rate This Movie</h2>
                 <label htmlFor='my-rating' className='my-rating'>
                   My Rating: {this.state.ratingInput}
                 </label>
