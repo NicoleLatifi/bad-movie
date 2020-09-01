@@ -1,15 +1,19 @@
 import React from 'react';
 import MovieCard from '../Movie-Card/Movie-Card';
 import './Movie-Section.css';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const MovieSection = ({ movies, currentUser }) => {
+const MovieSection = ({ movies, currentUser, favoriteMovies, addFavoriteMovie, getUsersFavoriteMovies }) => {
   const movieCards = movies.map((movie) => {
     return (
-      <Link to={`/movies/${movie.id}`} key={movie.id}>
-        <MovieCard movie={movie} currentUser={currentUser} />
-      </Link>
+        <MovieCard
+          movie={movie}
+          currentUser={currentUser}
+          favoriteMovies={favoriteMovies}
+          addFavoriteMovie={addFavoriteMovie}
+          getUsersFavoriteMovies={getUsersFavoriteMovies}
+          key={movie.id}
+        />
     );
   });
 

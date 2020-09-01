@@ -7,8 +7,15 @@ import PropTypes from 'prop-types';
 const Header = ({ currentUser, logoutUser }) => {
   return (
     <header className='header'>
-      <img src={badLogo} alt='Bad Movie Logo' height='50' width='50' />
-      {currentUser && <h2>Hello {currentUser.name}</h2>}
+      <img className='bad-logo' src={badLogo} alt='Bad Movie Logo' />
+      {currentUser && <p className='welcome-message'>Hello {currentUser.name}</p>}
+      {currentUser && (
+        <Link to={'/favorites'}>
+          <button className='favorites-button'>
+            Favorites
+          </button>
+        </Link>
+      )}
       {currentUser && (
         <button className='logout-button' onClick={logoutUser}>
           Logout

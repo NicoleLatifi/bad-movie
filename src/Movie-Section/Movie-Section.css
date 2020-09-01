@@ -4,15 +4,14 @@
 
 .movies-section-header {
   text-align: center;
-  height: 10vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
 }
 
 .movies-section-container {
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  justify-items: center;
   grid-gap: 20px;
-  height: 80vh;
   overflow-y: scroll;
 }
