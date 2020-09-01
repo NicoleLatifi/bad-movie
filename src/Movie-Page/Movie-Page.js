@@ -4,6 +4,7 @@ import { getSingleMovie } from '../Fetch';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import unfilledHeart from '../white-heart.png';
+import { addFavoriteMovie } from '../Fetch';
 
 class MoviePage extends Component {
   constructor(props) {
@@ -43,6 +44,11 @@ class MoviePage extends Component {
     this.props.deleteMovieRating(this.getUserMovieRating().id);
   };
 
+  favoriteMovie = () => {
+    console.log(this.state.selectedMovie)
+    addFavoriteMovie(this.state.selectedMovie)
+  }
+
   render() {
     const { currentUser } = this.props;
     const { selectedMovie } = this.state;
@@ -65,7 +71,7 @@ class MoviePage extends Component {
         {currentUser && (
           <aside className='movie-page-rating-card'>
             <div className='movie-page-heart-background'>
-              <img className='movie-page-heart-icon' src={unfilledHeart} alt='Unselected heart' />
+              <img className='movie-page-heart-icon' src={unfilledHeart} alt='Unselected heart' onClick={this.favoriteMovie} />
             </div>
             {currentUsersRating && (
               <div>
