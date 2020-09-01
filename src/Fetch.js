@@ -76,3 +76,28 @@ export const loginUser = (username, password) => {
       return { data, error: error.message };
     });
 };
+
+export const getFavoriteMovies = () => {
+  return fetch('http://localhost:3001/api/v1/favorites')
+    .then((response) => response.json())
+    .then((data) => {
+      return data
+    });
+};
+
+export const addFavoriteMovie = (movieId) => {
+  const stringyId = JSON.stringify({ id: movieId });
+  return fetch(`http://localhost:3001/api/v1/favorites`, {
+    method: 'Post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: stringyId,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((message) => {
+      console.log(message)
+    });
+};
