@@ -52,7 +52,7 @@ describe('Favorite-Movies Component', () => {
       <MemoryRouter>
         <FavoriteMovies
         favoriteMovies={favoriteMovies} movies={movies}
-        />)
+        />
       </MemoryRouter>
     );
 
